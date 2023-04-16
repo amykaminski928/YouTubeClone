@@ -8,14 +8,17 @@ from rest_framework.decorators import api_view, permission_classes
 
 @api_view (['GET'])
 @permission_classes([AllowAny])
-def get_comments_by_video(request):
-    comments = Comment.objects.all()
+def get_comments_by_video(request, video_id):
+    print(video_id)
+    comments = Comment.objects.filter(video_id=video_id)
     serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view (['POST'])
 @permission_classes([IsAuthenticated])
 def user_comments(request):
+    print(
+        'User ', f"{request.user.id} {request.user.username} {request.comment.text}")
     serialzier = CommentSerializer(data=request.data)
     if serialzier.is_valid():
         serialzier.save(user=request.user)
