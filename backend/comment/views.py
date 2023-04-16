@@ -12,3 +12,12 @@ def get_comments_by_video(request):
     comments = Comment.objects.all()
     serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view (['POST'])
+@permission_classes([IsAuthenticated])
+def user_comments(request):
+    serialzier = CommentSerializer(data=request.data)
+    if serialzier.is_valid():
+        serialzier.save(user=request.user)
+        return Response(serialzier.data, status=status.HTTP_201_CREATED)
+    return Response(serialzier.errors, status=status.HTTP_400_BAD_REQUEST)
