@@ -1,9 +1,10 @@
 // General Imports
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { KEY } from "./localkey";
+
 
 // Pages Imports
 import HomePage from "./pages/HomePage/HomePage";
@@ -17,22 +18,26 @@ import Footer from "./components/Footer/Footer";
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 
-function App() {
+function App(props) {
+  const [videos, setVideos] = useState([])
   return (
     <div>
       
       <Navbar />
       <Routes>
         <Route
-          path="/"
+          path="/account"
           element={
             <PrivateRoute>
               <HomePage />
             </PrivateRoute>
           }
         />
+        <Route exact path="/" element={<YouTubePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        
+        
       </Routes>
       <Footer />
     </div>
