@@ -7,9 +7,10 @@ import { KEY } from "./localkey";
 
 
 // Pages Imports
-import HomePage from "./pages/HomePage/HomePage";
+import YouTubePage from "./pages/YouTubePage/YouTubePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -19,20 +20,20 @@ import Footer from "./components/Footer/Footer";
 import PrivateRoute from "./utils/PrivateRoute";
 
 function App(props) {
-  const [videos, setVideos] = useState([])
+  
   return (
     <div>
       
       <Navbar />
       <Routes>
-        <Route
-          path="/account"
+        {/* <Route
+          path="/"
           element={
             <PrivateRoute>
-              <HomePage />
+              
             </PrivateRoute>
           }
-        />
+        /> */}
         <Route exact path="/" element={<YouTubePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
