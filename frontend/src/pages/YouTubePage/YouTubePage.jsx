@@ -26,10 +26,16 @@ function YouTubePage() {
         }
     };
     return (
-        <div>
+        <div className="container">
             <h1>Video Landing Page</h1>
             {videos && (
                 <div className="main-video">
+                    <iframe
+                        title = {videos[0]?.snippet.title}
+                        src={`https://www.youtube.com/embed/${videso[0]?.id.videoId}`}
+                        frameborder="0"
+                        allowFullScreen
+                    ></iframe>
                     <h3>{videos[0]?.snippet.title}</h3>
                     <p>{videos[0]?.snippet.description.substring(0, 150)}</p>
                     {isLoggedIn ? (
@@ -41,7 +47,13 @@ function YouTubePage() {
             )}
             <div className="related-videos">
                 {videos.slice(1).map((video) => (
-                    <div key={video.id.videoID}>
+                    <div key={video.id.videoID} className="related-video">
+                        <iframe
+                        title={video.snippet.title}
+                        src={`https://www.youtube.com/embed/${video.id.videoID}`}
+                        frameborder="0"
+                        allowFullScreen
+                        ></iframe>
                         <h4>{video.snippet.title}</h4>
                     </div>
                 ))}
