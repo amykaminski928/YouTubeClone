@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+}
+
+.main-video {
+    margin-right: 20px;
+}
+
+.related-videos {
+    margin-bottom: 20px;
+}
+
+.related-video {
+    margin-bottom: 20px;
+}

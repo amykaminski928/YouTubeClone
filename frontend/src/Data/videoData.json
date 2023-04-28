@@ -1,0 +1,175 @@
+{
+
+    "items": [
+      {
+        "kind": "youtube#searchResult",
+        "etag": "fXxwo0q7Qh7vnQ3dwbJ7YdTD6jk",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "eFV0FfMc_uo"
+        },
+        "snippet": {
+          "publishedAt": "2020-10-19T13:00:10Z",
+          "channelId": "UCHCABftGT184YQ33z8I1uCw",
+          "title": "Vagus Nerve Reset To Release Trauma Stored In The Body (Polyvagal Exercises)",
+          "description": "This vagus nerve reset is designed to relieve stress and anxiety by restoring the social engagement state referenced in Polyvagal ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/eFV0FfMc_uo/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/eFV0FfMc_uo/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/eFV0FfMc_uo/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Sukie Baxter - Whole Body Revolution",
+          "liveBroadcastContent": "none",
+          "publishTime": "2020-10-19T13:00:10Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "_LJ6Tb94_EpkboBv0RWhG7TFlZs",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "TVavLNPNlYs"
+        },
+        "snippet": {
+          "publishedAt": "2021-07-08T14:25:05Z",
+          "channelId": "UCvMNQrKXrJXb6XO63FVPtVg",
+          "title": "The Basic Polyvagal Exercise to Relieve Anxiety",
+          "description": "Stanley Rosenberg's Basic Exercise and self-massage. Relieve your anxiety and stress in just 2 minutes with a simple vagus ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/TVavLNPNlYs/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/TVavLNPNlYs/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/TVavLNPNlYs/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Feel Better Fast",
+          "liveBroadcastContent": "none",
+          "publishTime": "2021-07-08T14:25:05Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "24fy8MfGVmZl52SFP6rYHYLio38",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "_tb-DmL5T2w"
+        },
+        "snippet": {
+          "publishedAt": "2021-11-14T18:19:55Z",
+          "channelId": "UCz3XHup2bfOHvOznx3TLwqg",
+          "title": "NERVOUS SYSTEM THERAPY EXERCISES:  POLYVAGAL THEORY IN THERAPY",
+          "description": "This video is part of a series on learning to heal Attachment wound, and explores the important relationship of attachment and its ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/_tb-DmL5T2w/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/_tb-DmL5T2w/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/_tb-DmL5T2w/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "DR. KIM SAGE, LICENSED PSYCHOLOGIST",
+          "liveBroadcastContent": "none",
+          "publishTime": "2021-11-14T18:19:55Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "9sYCXRN0lu74Z6jpZyMvnGvinWk",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "L1HCG3BGK8I"
+        },
+        "snippet": {
+          "publishedAt": "2020-11-09T22:34:57Z",
+          "channelId": "UCHCABftGT184YQ33z8I1uCw",
+          "title": "Vagus Nerve Exercises To Rewire Your Brain From Anxiety",
+          "description": "In this video I show you three vagus nerve exercises to rewire your brain from anxiety. I also share what anxiety actually is (and ...",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/L1HCG3BGK8I/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/L1HCG3BGK8I/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/L1HCG3BGK8I/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Sukie Baxter - Whole Body Revolution",
+          "liveBroadcastContent": "none",
+          "publishTime": "2020-11-09T22:34:57Z"
+        }
+      },
+      {
+        "kind": "youtube#searchResult",
+        "etag": "pZnxo3KLNRJiBijZlXVvkefG3dc",
+        "id": {
+          "kind": "youtube#video",
+          "videoId": "OeokFxnhGQo"
+        },
+        "snippet": {
+          "publishedAt": "2020-09-07T13:00:05Z",
+          "channelId": "UCHCABftGT184YQ33z8I1uCw",
+          "title": "Polyvagal Theory Explained Simply",
+          "description": "We're getting a little nerdy today and talking about the Polyvagal Theory of stress. This is something that I reference all. the. time!",
+          "thumbnails": {
+            "default": {
+              "url": "https://i.ytimg.com/vi/OeokFxnhGQo/default.jpg",
+              "width": 120,
+              "height": 90
+            },
+            "medium": {
+              "url": "https://i.ytimg.com/vi/OeokFxnhGQo/mqdefault.jpg",
+              "width": 320,
+              "height": 180
+            },
+            "high": {
+              "url": "https://i.ytimg.com/vi/OeokFxnhGQo/hqdefault.jpg",
+              "width": 480,
+              "height": 360
+            }
+          },
+          "channelTitle": "Sukie Baxter - Whole Body Revolution",
+          "liveBroadcastContent": "none",
+          "publishTime": "2020-09-07T13:00:05Z"
+        }
+      }
+    ]
+  }
