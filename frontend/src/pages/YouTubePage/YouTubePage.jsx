@@ -32,7 +32,7 @@ function YouTubePage() {
                 <div className="main-video">
                     <iframe
                         title = {videos[0]?.snippet.title}
-                        src={`https://www.youtube.com/embed/${videso[0]?.id.videoId}`}
+                        src={`https://www.youtube.com/embed/${videos[0]?.id.videoId}`}
                         frameborder="0"
                         allowFullScreen
                     ></iframe>
