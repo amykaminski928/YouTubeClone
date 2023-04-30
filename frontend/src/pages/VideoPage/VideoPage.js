@@ -1,6 +1,8 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
-function VideoPage({ videoId }) {
+function VideoPage() {
+    const { videoId } = useParams();
     return (
         <div>
             <iframe

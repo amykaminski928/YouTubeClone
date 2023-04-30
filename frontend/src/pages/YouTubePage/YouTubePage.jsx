@@ -1,8 +1,10 @@
+import useVideoSelection from "../../hooks/useVideoSelection";
 import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { KEY } from "../../../src/localkey";
+
 
 // temporary JSON File for data placeholder while in production
 import videoData from "../../../src/Data/videoData.json";
@@ -12,6 +14,9 @@ function YouTubePage() {
     const [user, token] = useAuth();
     const [videos, setVideos] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    
+    const handleVideoclick = useVideoSelection();
+    
     // FOR LIVE DATA PULLING WHEN PROJECT CORRECTLY STYLED
     // useEffect(() => {
     //     setIsLoggedIn(!!user);
@@ -59,16 +64,18 @@ function YouTubePage() {
                     )}
                 </div>
             )}
-            <div className="related-videos">
-                {videos.slice(1).map((video) => (
-                    <div key={video.id.videoID} className="related-video">
+            <div className="related-videos">           
+                {videos.slice(1).map((item) => (
+                    <div key={item.id.videoId} 
+                        onClick={() => handleVideoclick(item.id.videoId)}
+                        className="related-video">
                         <iframe
-                        title={video.snippet.title}
-                        src={`https://www.youtube.com/embed/${video.id.videoID}`}
+                        title={item.snippet.title}
+                        src={`https://www.youtube.com/embed/${item.id.videoId}`}
                         frameborder="0"
                         allowFullScreen
                         ></iframe>
-                        <h4>{video.snippet.title}</h4>
+                        <h4>{item.snippet.title}</h4>
                     </div>
                 ))}
             </div>
