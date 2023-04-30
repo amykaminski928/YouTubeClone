@@ -4,14 +4,18 @@
 // user's experience of the same page without reloading from 
 // the 3rd Party API.
 
-import { useNavigate } from 'react-router-dom';
 
-export default function useVideoSelection() {
-    const navigate = useNavigate();
+// ***This was not working the way that I had intended.  
+// ***Trying a new custom hook : changeMainVideo
 
-    const handleVideoClick = (videoId) => {
-        navigate(`/video/&{videoId}`);
-    };
-    return { handleVideoClick };
-}
+// import { useNavigate } from 'react-router-dom';
+
+// export default function useVideoSelection() {
+//     const navigate = useNavigate();
+
+//     const handleVideoClick = (videoId) => {
+//         navigate(`/video/&{videoId}`);
+//     };
+//     return { handleVideoClick };
+// }
 

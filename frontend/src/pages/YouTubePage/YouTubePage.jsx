@@ -1,4 +1,5 @@
-import useVideoSelection from "../../hooks/useVideoSelection";
+// import useVideoSelection from "../../hooks/useVideoSelection";
+import changeMainVideo from "../../hooks/changeMainVideo";
 import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
@@ -8,14 +9,16 @@ import { KEY } from "../../../src/localkey";
 
 // temporary JSON File for data placeholder while in production
 import videoData from "../../../src/Data/videoData.json";
+import useChangeMainVideo from "../../hooks/changeMainVideo";
 
 function YouTubePage() {
     
     const [user, token] = useAuth();
     const [videos, setVideos] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    
-    const handleVideoclick = useVideoSelection();
+    const [relVideos, changeMainVideo] = useChangeMainVideo(videoData.items);
+
+    const handleVideoclick = changeMainVideo();
     
     // FOR LIVE DATA PULLING WHEN PROJECT CORRECTLY STYLED
     // useEffect(() => {
@@ -66,16 +69,15 @@ function YouTubePage() {
             )}
             <div className="related-videos">           
                 {videos.slice(1).map((item) => (
-                    <div key={item.id.videoId} 
-                        onClick={() => handleVideoclick(item.id.videoId)}
-                        className="related-video">
+                    <div key={item.id.videoId} className="related-video">
                         <iframe
-                        title={item.snippet.title}
-                        src={`https://www.youtube.com/embed/${item.id.videoId}`}
-                        frameborder="0"
-                        allowFullScreen
-                        ></iframe>
-                        <h4>{item.snippet.title}</h4>
+                            title={item.snippet.title}
+                            src={`https://www.youtube.com/embed/${item.id.videoId}`}
+                            frameborder="0"
+                            allowFullScreen
+                        ></iframe>                      
+                            <div onClick={() => handleVideoclick(item.id.videoId)} />
+                            <h4>{item.snippet.title}</h4>
                     </div>
                 ))}
             </div>
