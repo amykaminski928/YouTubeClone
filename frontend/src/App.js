@@ -29,7 +29,7 @@ function App(props) {
       
       <Navbar />
       <SearchBar/>
-      <Router>
+      
       <Routes>
         
         {/* <Route
@@ -44,9 +44,9 @@ function App(props) {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/search/:videoId" element={<SearchResultsPage />} />
-        
+        <Route path="/search" element={<SearchResultsPage />} />
       </Routes>
-      </Router>
+      
       <Footer />
     </div>
   );

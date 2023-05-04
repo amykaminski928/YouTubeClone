@@ -7,6 +7,7 @@
 
 import React from "react";
 import useAuth from "../../hooks/useAuth";
+import {useNavigate} from "react-router-dom"
 // import Comments from "../Comments"
 
 function VideoDisplay({mainVideo, relatedVideos}) {
@@ -15,7 +16,12 @@ function VideoDisplay({mainVideo, relatedVideos}) {
     //     setIsLoggedIn(!!user);
     //     fetchVideos();
     // }, [user]);
-        
+    const navigate = useNavigate();
+    
+
+    const handleVideoClick = (item) => {
+        navigate(`/search/${item.id.videoId}`);
+    };    
     return (
         <div className="container">
             <h3>{mainVideo.snippet.title}</h3>
@@ -44,6 +50,7 @@ function VideoDisplay({mainVideo, relatedVideos}) {
                         src={`https://www.youtube.com/embed/${item.id.videoId}`}
                         frameBorder="0"
                         allowFullScreen
+                        onClick={handleVideoClick(item)}
                     ></iframe>
                 </div>
                 <h4>{item.snippet.title}</h4>

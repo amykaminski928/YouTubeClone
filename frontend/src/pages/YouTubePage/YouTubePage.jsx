@@ -2,6 +2,7 @@
 // import changeMainVideo from "../../hooks/changeMainVideo";
 import React from "react";
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { KEY } from "../../../src/localkey";
@@ -16,10 +17,8 @@ function YouTubePage() {
     const [user, token] = useAuth();
     const [videos, setVideos] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    // const [relVideos, changeMainVideo] = useChangeMainVideo(videoData.items);
 
-    // const handleVideoclick = changeMainVideo;
-    
+    // const [relVideos, changeMainVideo] = useChangeMainVideo(videoData.items);
     // FOR LIVE DATA PULLING WHEN PROJECT CORRECTLY STYLED
     // useEffect(() => {
     //     setIsLoggedIn(!!user);

@@ -17,9 +17,9 @@ const SearchBar = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        navigate('/search-results', { state: {searchTerm } });
+        navigate(`/search/`, { state: {searchTerm } });
     };
-
+  
     return (
         <form onSubmit={handleSubmit}>
             <input

@@ -7,12 +7,13 @@ import React, {useEffect, useState} from "react";
 import axios from "axios"
 import { KEY } from "../../../src/localkey";
 import { useLocation } from "react-router-dom";
+import VideoDisplay from "../../components/VideoDisplay/VideoDisplay";
 
 
 function SearchResultsPage() {
     const [searchResults, setSearchResults] = useState([]);
     const location = useLocation();
-    const searchTerm = location.state.searchTerm;
+    const searchTerm = location.state?.searchTerm;
 
     const performSearch = async () => {
         try {
@@ -29,7 +30,16 @@ function SearchResultsPage() {
         performSearch();
     }, [searchTerm]);
 
-}
+    return(
+        <div className="container" >
+            {searchResults.length > 0 && (
+                <VideoDisplay
+                    mainVideo={searchResults[0]}
+                    relatedVideos={searchResults.slice(1)}
+            />
+            )}            
+        </div>);
+};
 
 
 export default SearchResultsPage
