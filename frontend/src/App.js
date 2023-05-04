@@ -15,16 +15,20 @@ import VideoPage from "./pages/VideoPage/VideoPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
+import SearchBar from "./components/SearchBar/SearchBar";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 
 function App(props) {
+
   
   return (
-    <div>
+    <div className="App">
+      
       
       <Navbar />
+      <SearchBar/>
       <Routes>
         {/* <Route
           path="/"
