@@ -7,7 +7,7 @@
 
 import React from "react";
 import useAuth from "../../hooks/useAuth";
-import Comments from "../Comments"
+// import Comments from "../Comments"
 
 function VideoDisplay({mainVideo, relatedVideos}) {
     // const [isLoggedIn, setIsLoggedIn] = useState(false);

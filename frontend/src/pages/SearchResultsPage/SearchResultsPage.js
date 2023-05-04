@@ -1,12 +1,18 @@
+// Page will fetch search results based on search term passed as state
+// from SearchBar component.
+// useLocation is: 
+
 import SearchBar from "../../components/SearchBar/SearchBar";
 import React, {useEffect, useState} from "react";
 import axios from "axios"
 import { KEY } from "../../../src/localkey";
+import { useLocation } from "react-router-dom";
 
 
-
-function SearchResultsPage({ searchTerm }) {
+function SearchResultsPage() {
     const [searchResults, setSearchResults] = useState([]);
+    const location = useLocation();
+    const searchTerm = location.state.searchTerm;
 
     const performSearch = async () => {
         try {
@@ -22,6 +28,8 @@ function SearchResultsPage({ searchTerm }) {
     useEffect(() => {
         performSearch();
     }, [searchTerm]);
+
+}
 
 
 export default SearchResultsPage

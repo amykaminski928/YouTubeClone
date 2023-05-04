@@ -1,11 +1,11 @@
 // import useVideoSelection from "../../hooks/useVideoSelection";
-import changeMainVideo from "../../hooks/changeMainVideo";
+// import changeMainVideo from "../../hooks/changeMainVideo";
 import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { KEY } from "../../../src/localkey";
-import VideoDisplay from "../../components/VideoDisplay"
+import VideoDisplay from "../../components/VideoDisplay/VideoDisplay"
 
 // temporary JSON File for data placeholder while in production
 import videoData from '../../Data/videoData.json';
@@ -47,47 +47,20 @@ function YouTubePage() {
 
     return (
         <div className="container">
-            <h1>Video Landing Page</h1>
-            {videos && (
-                <div className="main-video">
-                    <VideoDisplay
-                        videoId={videos[0]?.id.videoId}
-                        title = {videos[0]?.snippet.title}
-                        src={`https://www.youtube.com/embed/${videos[0]?.id.videoId}`}
-                        width="500"
-                        height="315"
-                        frameBorder="0"
-                        allowFullScreen
-                    ></iframe>
-                    <h3>{videos[0]?.snippet.title}</h3>
-                    <p>{videos[0]?.snippet.description.substring(0, 150)}</p>
-                    {isLoggedIn ? (
-                        <p>Logged in user can leave a comment here</p>
-                    ) : (
-                        <p>LogIn to leave a comment</p>
-                    )}
-                </div>
-            )}
-            <div className="related-videos">           
-                {videos.slice(1).map((item) => (
-                    <div key={item.id.videoId} 
-                    className="related-video"
-                    onClick={() => handleVideoclick(item)} >
-                        <div classname="iframe-wrapper">
-                        <iframe
-                            title={item.snippet.title}
-                            src={`https://www.youtube.com/embed/${item.id.videoId}`}
-                            frameborder="0"
-                            allowFullScreen
-                        ></iframe> 
-                        </div> 
-                            <h4>{item.snippet.title}</h4>
-                    </div>
-                ))}
-            </div>
+            {videos.length > 0 && (
+                <VideoDisplay
+                    mainVideo={videos[0]}
+                    relatedVideos={videos.slice(1)}
+            />
+            )}            
         </div>
+            
+            
+
+                
+        
     );
-    }
+            }
 export default YouTubePage;
 
  
