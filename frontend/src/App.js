@@ -1,5 +1,5 @@
 // General Imports
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, Router } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -29,7 +29,9 @@ function App(props) {
       
       <Navbar />
       <SearchBar/>
+      <Router>
       <Routes>
+        
         {/* <Route
           path="/"
           element={
@@ -44,6 +46,7 @@ function App(props) {
         <Route path="/search/:videoId" element={<SearchResultsPage />} />
         
       </Routes>
+      </Router>
       <Footer />
     </div>
   );
