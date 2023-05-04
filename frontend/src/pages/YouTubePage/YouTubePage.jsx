@@ -8,7 +8,7 @@ import { KEY } from "../../../src/localkey";
 
 
 // temporary JSON File for data placeholder while in production
-import videoData from "../../../src/Data/videoData.json";
+import videoData from '../../Data/videoData.json';
 import useChangeMainVideo from "../../hooks/changeMainVideo";
 
 function YouTubePage() {
@@ -18,7 +18,7 @@ function YouTubePage() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [relVideos, changeMainVideo] = useChangeMainVideo(videoData.items);
 
-    const handleVideoclick = changeMainVideo();
+    const handleVideoclick = changeMainVideo;
     
     // FOR LIVE DATA PULLING WHEN PROJECT CORRECTLY STYLED
     // useEffect(() => {
@@ -69,14 +69,17 @@ function YouTubePage() {
             )}
             <div className="related-videos">           
                 {videos.slice(1).map((item) => (
-                    <div key={item.id.videoId} className="related-video">
+                    <div key={item.id.videoId} 
+                    className="related-video"
+                    onClick={() => handleVideoclick(item)} >
+                        <div classname="iframe-wrapper">
                         <iframe
                             title={item.snippet.title}
                             src={`https://www.youtube.com/embed/${item.id.videoId}`}
                             frameborder="0"
                             allowFullScreen
-                        ></iframe>                      
-                            <div onClick={() => handleVideoclick(item.id.videoId)} />
+                        ></iframe> 
+                        </div> 
                             <h4>{item.snippet.title}</h4>
                     </div>
                 ))}

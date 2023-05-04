@@ -1,7 +1,10 @@
 import { useState } from "react";
 
-const useChangeMainVideo = (initialVideos) => {
-    const [videos, setVideos] = useState(initialVideos);
+
+import videoData from "../Data/videoData.json";
+
+const useChangeMainVideo = () => {
+    const [videos, setVideos] = useState(videoData.items);
 
     const changeMainVideo = (newMainVideo) => {
         const newVideos = videos.map((video) => {

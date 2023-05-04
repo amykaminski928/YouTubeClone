@@ -13,3 +13,7 @@
 .related-video {
     margin-bottom: 20px;
 }
+
+.iframe-wrapper iframe {
+    pointer-events: none;
+}
