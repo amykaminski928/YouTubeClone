@@ -6,9 +6,16 @@
 // dependent on the URL parameters and reduce reusability.)
 
 import React from "react";
+import useAuth from "../../hooks/useAuth";
+import Comments from "../Comments"
 
 function VideoDisplay({mainVideo, relatedVideos}) {
-    
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);
+        // useEffect(() => {
+    //     setIsLoggedIn(!!user);
+    //     fetchVideos();
+    // }, [user]);
+        
     return (
         <div className="container">
             <h3>{mainVideo.snippet.title}</h3>
@@ -21,6 +28,11 @@ function VideoDisplay({mainVideo, relatedVideos}) {
                     frameBorder="0"
                     allowFullScreen
                 ></iframe>
+                {/* <div> {isLoggedIn ? (
+                        <p>Logged in user can leave a comment here</p>
+                    ) : (
+                        <p>LogIn to leave a comment</p>
+                    )}</div> */}
             <p>{mainVideo.snippet.description.substring(0, 150)}</p>            
         </div>
         <div className="related-videos">
