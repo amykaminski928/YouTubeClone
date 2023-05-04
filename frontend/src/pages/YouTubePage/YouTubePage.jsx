@@ -5,20 +5,20 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { KEY } from "../../../src/localkey";
-
+import VideoDisplay from "../../components/VideoDisplay"
 
 // temporary JSON File for data placeholder while in production
 import videoData from '../../Data/videoData.json';
-import useChangeMainVideo from "../../hooks/changeMainVideo";
+// import useChangeMainVideo from "../../hooks/changeMainVideo";
 
 function YouTubePage() {
     
     const [user, token] = useAuth();
     const [videos, setVideos] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [relVideos, changeMainVideo] = useChangeMainVideo(videoData.items);
+    // const [relVideos, changeMainVideo] = useChangeMainVideo(videoData.items);
 
-    const handleVideoclick = changeMainVideo;
+    // const handleVideoclick = changeMainVideo;
     
     // FOR LIVE DATA PULLING WHEN PROJECT CORRECTLY STYLED
     // useEffect(() => {
@@ -50,7 +50,8 @@ function YouTubePage() {
             <h1>Video Landing Page</h1>
             {videos && (
                 <div className="main-video">
-                    <iframe
+                    <VideoDisplay
+                        videoId={videos[0]?.id.videoId}
                         title = {videos[0]?.snippet.title}
                         src={`https://www.youtube.com/embed/${videos[0]?.id.videoId}`}
                         width="500"
