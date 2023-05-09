@@ -8,7 +8,7 @@
 import React from "react";
 import useAuth from "../../hooks/useAuth";
 import {useNavigate} from "react-router-dom"
-// import Comments from "../Comments"
+import Comments from "../Comments/Comments"
 
 function VideoDisplay({mainVideo, relatedVideos}) {
     // const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,12 +34,15 @@ function VideoDisplay({mainVideo, relatedVideos}) {
                     frameBorder="0"
                     allowFullScreen
                 ></iframe>
+            <p>{mainVideo.snippet.description.substring(0, 150)}</p>
                 {/* <div> {isLoggedIn ? (
                         <p>Logged in user can leave a comment here</p>
                     ) : (
                         <p>LogIn to leave a comment</p>
                     )}</div> */}
-            <p>{mainVideo.snippet.description.substring(0, 150)}</p>            
+                <Comments videoId={mainVideo.id.videoID} /> 
+             
+                      
         </div>
         <div className="related-videos">
             {relatedVideos.map((item) => (
