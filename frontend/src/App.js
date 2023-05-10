@@ -1,9 +1,7 @@
 // General Imports
 import { Routes, Route, Link, Router } from "react-router-dom";
 import "./App.css";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { KEY } from "./localkey";
+
 
 
 // Pages Imports
@@ -19,6 +17,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
+import VideoDisplay from "./components/VideoDisplay/VideoDisplay";
 
 function App(props) {
 
@@ -32,15 +31,15 @@ function App(props) {
       
       <Routes>
         
-        {/* <Route
+      <Route
           path="/"
           element={
             <PrivateRoute>
-              
+              <YouTubePage />
             </PrivateRoute>
           }
-        /> */}
-        <Route exact path="/" element={<YouTubePage />} />
+        />
+        <Route path="/" element={<YouTubePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/search/:videoId" element={<SearchResultsPage />} />

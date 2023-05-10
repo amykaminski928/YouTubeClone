@@ -12,19 +12,19 @@ import useCustomForm from "../../hooks/useCustomForm";
 const Comments = ({videoId}) => {
     const [comments, setComments] = useState([]);
     const [user, token] = useAuth();
-
-    const fetchComments = async () => {
-        try {
-            const response = await axios.get(`http://localhost:3000/api/comments/${videoId}`);
-            setComments(response.data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-    
     useEffect(() => {
-        fetchComments();
-    }, [videoId]);
+        const fetchComments = async () => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}`);
+                setComments(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+
+            fetchComments();
+        }, [videoId]);
 
     
     
@@ -34,9 +34,8 @@ const Comments = ({videoId}) => {
             return;
         }
         try {
-            await axios.post(`http://localhost:3000/api/`, {
-            ...data,
-            videoId,
+            await axios.post(`http://127.0.0.1:8000/api/`, {
+            content: data.comment,
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -46,6 +45,8 @@ const Comments = ({videoId}) => {
     
     reset();
     fetchComments();
+    // const response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}`);
+    // setComments(response.data);
     } catch (error) {
         console.log(error);
     }
@@ -63,7 +64,7 @@ return (
                 <p>{comment.content}</p>
            </div>
         ))}
-        (user && (
+        {user && (
             <form onSubmit={handleSubmit}>
                 <textarea
                 name="comment"
@@ -73,7 +74,7 @@ return (
                 />
                 <button type="submit">Submit</button>
             </form>
-        ))
+        )}
     </div>
     );
 };

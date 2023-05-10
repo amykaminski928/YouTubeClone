@@ -5,17 +5,22 @@
 // (rather than 'Params' which makes the videoDisplay component 
 // dependent on the URL parameters and reduce reusability.)
 
-import React from "react";
+import React, {useState, useEffect} from "react";
 import useAuth from "../../hooks/useAuth";
 import {useNavigate} from "react-router-dom"
 import Comments from "../Comments/Comments"
+// import YouTubePage from "../../pages/YouTubePage/YouTubePage";
 
-function VideoDisplay({mainVideo, relatedVideos}) {
-    // const [isLoggedIn, setIsLoggedIn] = useState(false);
-        // useEffect(() => {
-    //     setIsLoggedIn(!!user);
-    //     fetchVideos();
-    // }, [user]);
+
+function VideoDisplay({mainVideo, relatedVideos, fetchVideos}) {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [user, token] =useAuth(); 
+   
+    
+        useEffect(() => {
+        setIsLoggedIn(!!user);
+        fetchVideos();
+    }, [user, fetchVideos]);
     const navigate = useNavigate();
     
 
@@ -25,7 +30,7 @@ function VideoDisplay({mainVideo, relatedVideos}) {
     return (
         <div className="container">
             <h3>{mainVideo.snippet.title}</h3>
-            <div classname="main-video">
+            <div className="main-video">
                 <iframe
                     title={`Video ${mainVideo.id.videoId}`}
                     src={`https://www.youtube.com/embed/${mainVideo.id.videoId}`}
@@ -35,18 +40,19 @@ function VideoDisplay({mainVideo, relatedVideos}) {
                     allowFullScreen
                 ></iframe>
             <p>{mainVideo.snippet.description.substring(0, 150)}</p>
-                {/* <div> {isLoggedIn ? (
+                <div> {isLoggedIn ? (
                         <p>Logged in user can leave a comment here</p>
                     ) : (
                         <p>LogIn to leave a comment</p>
-                    )}</div> */}
+                    )}</div>
+                console.log(mainVideo);
                 <Comments videoId={mainVideo.id.videoId} /> 
              
                       
         </div>
         <div className="related-videos">
             {relatedVideos.map((item) => (
-                <div key={item.id.videoID} className="related-video">
+                <div key={item.id.videoId} className="related-video">
                     <div className="iframe">
                     <iframe
                         title={item.snippet.title}
