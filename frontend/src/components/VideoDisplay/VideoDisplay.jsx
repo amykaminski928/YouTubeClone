@@ -40,7 +40,7 @@ function VideoDisplay({mainVideo, relatedVideos}) {
                     ) : (
                         <p>LogIn to leave a comment</p>
                     )}</div> */}
-                <Comments videoId={mainVideo.id.videoID} /> 
+                <Comments videoId={mainVideo.id.videoId} /> 
              
                       
         </div>
@@ -53,7 +53,7 @@ function VideoDisplay({mainVideo, relatedVideos}) {
                         src={`https://www.youtube.com/embed/${item.id.videoId}`}
                         frameBorder="0"
                         allowFullScreen
-                        onClick={handleVideoClick(item)}
+                        onClick={() => handleVideoClick(item)}
                     ></iframe>
                 </div>
                 <h4>{item.snippet.title}</h4>
