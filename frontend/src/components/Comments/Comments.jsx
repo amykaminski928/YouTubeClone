@@ -12,7 +12,7 @@ import useCustomForm from "../../hooks/useCustomForm";
 const Comments = ({videoId}) => {
     const [comments, setComments] = useState([]);
     const [user, token] = useAuth();
-    useEffect(() => {
+    
         const fetchComments = async () => {
             try {
                 const response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}`);
@@ -22,7 +22,7 @@ const Comments = ({videoId}) => {
             }
         };
 
-
+        useEffect(() => {
             fetchComments();
         }, [videoId]);
 
@@ -39,7 +39,7 @@ const Comments = ({videoId}) => {
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`
-                }
+                },
             });
 
     
