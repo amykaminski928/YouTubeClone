@@ -10,27 +10,55 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+//Attempt 2: 
 
-const SearchBar = () => {
+//this component allows the user to search for videos:
+const SearchBar = ({ onFormSubmit }) => {
     const [searchTerm, setSearchTerm] = useState('');
-    const navigate = useNavigate();
 
-    const handleSubmit = (event) => {
+    // function to handle form submission
+    const onSubmit = event => {
         event.preventDefault();
-        navigate(`/search/`, { state: {searchTerm } });
+        onFormSubmit(searchTerm);
     };
-  
+
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-            type="text"
-            placeholder="Search"
-            value={searchTerm}
-            onChange={(event) => setSearchTerm(event.target.value)}
-            />
-            <button type="submit">Search</button>
-        </form>
+        <div className="search-bar">
+            <form onSubmit={onSubmit} classname="searc-form">
+                <div className="field">
+                    <label>Video Search</label>
+                    <input
+                        type="text"
+                        value={searchTerm}
+                        onChange={event => setSearchTerm(event.target.value)}
+                    />
+                </div>
+            </form>
+        </div>
     );
 };
 
-export default SearchBar
+export default SearchBar;
+// const SearchBar = () => {
+//     const [searchTerm, setSearchTerm] = useState('');
+//     const navigate = useNavigate();
+
+//     const handleSubmit = (event) => {
+//         event.preventDefault();
+//         navigate(`/search/`, { state: {searchTerm } });
+//     };
+  
+//     return (
+//         <form onSubmit={handleSubmit}>
+//             <input
+//             type="text"
+//             placeholder="Search"
+//             value={searchTerm}
+//             onChange={(event) => setSearchTerm(event.target.value)}
+//             />
+//             <button type="submit">Search</button>
+//         </form>
+//     );
+// };
+
+// export default SearchBar

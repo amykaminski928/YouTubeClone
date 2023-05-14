@@ -31,14 +31,14 @@ function App(props) {
       
       <Routes>
         
-      <Route
+      {/* <Route
           path="/"
           element={
             <PrivateRoute>
               <YouTubePage />
             </PrivateRoute>
           }
-        />
+        /> */}
         <Route path="/" element={<YouTubePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
