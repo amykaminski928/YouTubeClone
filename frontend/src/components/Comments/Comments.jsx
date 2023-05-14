@@ -9,74 +9,123 @@ import axios from "axios";
 import useCustomForm from "../../hooks/useCustomForm";
 
 
-const Comments = ({videoId}) => {
+const Comments = ({ video, user }) => {
     const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState("");
     const [user, token] = useAuth();
     
+    //Fetch comments when the video changes: 
+    useEffect(() => {
         const fetchComments = async () => {
-            try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}`);
-                setComments(response.data);
-            } catch (error) {
-                console.log(error);
-            }
+            const response = await axios.get(`http://127.0.0.1:8000/api/comments/${video_id}`);
+            setComments(response.data);
         };
 
-        useEffect(() => {
-            fetchComments();
-        }, [videoId]);
+        fetchComments();
+    }, [video]);
 
-    
-    
-    async function submitComment(data) {
+    // function to handle form submission:
+
+    const onSubmit = async event => {
+        event.preventDefault();
         if (!user) {
-            console.log("not logged in");
+            alert("You must be logged in to post a comment.");
             return;
         }
-        try {
-            await axios.post(`http://127.0.0.1:8000/api/`, {
-            content: data.comment,
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                },
-            });
+        
+        await axios.post(`http://127.0.0.1:8000/api/comments`, {
+            videoId: video.id.videoId,
+            userId: user.id,
+            comment: newComment
+        });
+        setNewComment('');
+    };
+    
+    return (
+        <div>
+            <form onSubmit={onSubmit}>
+                <input
+                    type="text"
+                    value={newComment}
+                    onChange={evnet => setNewComment(event.target.value)}
+                    placeholder="Add a comment.."
+                />
+                <button type="submit">Post</button>
+            </form>
+            <ul>
+                {comments.map((comment, index) => (
+                    <li key={index}>{comment}</li>
+                ))}
+            </ul>
+        </div>
+    );
+    };
+    
+    export default Comments;
+//         const fetchComments = async () => {
+//             try {
+//                 const response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}`);
+//                 setComments(response.data);
+//             } catch (error) {
+//                 console.log(error);
+//             }
+//         };
+
+//         useEffect(() => {
+//             fetchComments();
+//         }, [videoId]);
 
     
-    reset();
-    fetchComments();
-    // const response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}`);
-    // setComments(response.data);
-    } catch (error) {
-        console.log(error);
-    }
-}
+    
+//     async function submitComment(data) {
+//         if (!user) {
+//             console.log("not logged in");
+//             return;
+//         }
+//         try {
+//             await axios.post(`http://127.0.0.1:8000/api/`, {
+//             content: data.comment,
+//             }, {
+//                 headers: {
+//                     Authorization: `Bearer ${token}`
+//                 },
+//             });
 
-const [formData, handleInputChange, handleSubmit, reset] = useCustomForm({
-    comment: "",
-}, submitComment);
+    
+//     reset();
+//     fetchComments();
+//     // const response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}`);
+//     // setComments(response.data);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 
-return ( 
-    <div className="comments">
-        <h4>Comments</h4>
-        {comments.map((comment) => (
-            <div key={comment.id} className="comment">
-                <p>{comment.content}</p>
-           </div>
-        ))}
-        {user && (
-            <form onSubmit={handleSubmit}>
-                <textarea
-                name="comment"
-                value={formData.comment}
-                onChange={handleInputChange}
-                placeholder="Your comment"
-                />
-                <button type="submit">Submit</button>
-            </form>
-        )}
-    </div>
-    );
-};
-export default Comments;
+// const [formData, handleInputChange, handleSubmit, reset] = useCustomForm({
+//     comment: "",
+// }, submitComment);
+
+// return ( 
+//     <div className="comments">
+//         <h4>Comments</h4>
+//         {comments.map((comment) => (
+//             <div key={comment.id} className="comment">
+//                 <p>{comment.content}</p>
+//            </div>
+//         ))}
+//         {user && (
+//             <form onSubmit={handleSubmit}>
+//                 <textarea
+//                 name="comment"
+//                 value={formData.comment}
+//                 onChange={handleInputChange}
+//                 placeholder="Your comment"
+//                 />
+//                 <button type="submit">Submit</button>
+//             </form>
+//         )}
+//     </div>
+//     );
+// };
+// export default Comments;
 
