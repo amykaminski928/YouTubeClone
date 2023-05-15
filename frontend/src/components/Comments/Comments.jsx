@@ -3,7 +3,7 @@
 // contain a form for submitting comments if user is logged in
 
 import React, { useState, useEffect } from "react";
-import useAuth from "../../hooks/useAuth";
+// import useAuth from "../../hooks/useAuth";
 // import "..Comments.css";
 import axios from "axios";
 import useCustomForm from "../../hooks/useCustomForm";
@@ -12,12 +12,12 @@ import useCustomForm from "../../hooks/useCustomForm";
 const Comments = ({ video, user }) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
-    const [user, token] = useAuth();
+    // const [user, token] = useAuth();
     
     //Fetch comments when the video changes: 
     useEffect(() => {
         const fetchComments = async () => {
-            const response = await axios.get(`http://127.0.0.1:8000/api/comments/${video_id}`);
+            const response = await axios.get(`http://127.0.0.1:8000/api/comments/${video.videoId}`);
             setComments(response.data);
         };
 
@@ -47,7 +47,7 @@ const Comments = ({ video, user }) => {
                 <input
                     type="text"
                     value={newComment}
-                    onChange={evnet => setNewComment(event.target.value)}
+                    onChange={event => setNewComment(event.target.value)}
                     placeholder="Add a comment.."
                 />
                 <button type="submit">Post</button>
