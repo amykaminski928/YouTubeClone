@@ -15,35 +15,37 @@ import { KEY } from '../../localkey';
 //this component allows the user to search for videos:
 const SearchBar = ({ onFormSubmit }) => {
    
-    const [searchTerm, setSearchTerm] = useState("poyvagal exercises"); //Initial search
-    // const [searchResults, setSearchResults] = useState([]);
-    // const location = useLocation();
-    // const searchTerm = location.state?.searchTerm;
+    const [searchTerm, setSearchTerm] = useState(""); 
+    const [isSubmitted, setIsSubmitted] = useState(false);
+   
 
-    const performSearch = async () => {
+    const performSearch = async (term) => {
         try {
             const response = await axios.get(
-                `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}&part=snippet&maxResults=5`
+                `https://www.googleapis.com/youtube/v3/search?q=${term}&key=${KEY}&part=snippet&maxResults=5`
             );
-            // setSearchResults(response.data.items);
             onFormSubmit(response.data.items);
         } catch (error) {
             console.log(error.message);
         }
     };
 
+    // initial search upon render
     useEffect(() => {
-        performSearch();
-    }, [searchTerm]);
-    // function to perform search when form is submitted.
-    const onSubmit = event => {
-        event.preventDefault();
-        performSearch(searchTerm);
-    };
+        performSearch("Polyvagal Exercises");
+    }, []);
+
+    // performSearch when form is submitted.
+    useEffect(() => {
+        if(isSubmitted) {
+            performSearch(searchTerm);
+            setIsSubmitted(false);
+        }
+    }, [isSubmitted]);
 
     return (
         <div className="search-bar">
-            <form onSubmit={onSubmit} classname="search-form">
+            <form onSubmit={onSubmit} className="search-form">
                 <div className="field">
                     <label>Video Search</label>
                     <input
@@ -51,7 +53,9 @@ const SearchBar = ({ onFormSubmit }) => {
                         value={searchTerm}
                         onChange={event => setSearchTerm(event.target.value)}
                     />
+                    <p>State your terms in the Search Bar above!</p>
                 </div>
+                <button type="submit">Search</button>
             </form>
         </div>
     );
