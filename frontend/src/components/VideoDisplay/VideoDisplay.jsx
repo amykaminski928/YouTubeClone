@@ -10,11 +10,15 @@
 // reorganized as display component for clicked video thumbnail
 
 import React from "react";
+import { useLocation } from 'react-router-dom';
 import RelatedVideos from '../RelatedVideos/RelatedVideos';
 import MainVideo from "../MainVideo/MainVideo";
 
-const VideoDisplay = ({ mainVideo, relatedVideos, onVideoSelect }) => {
-    if (!mainVideo) {
+function VideoDisplay() {
+    const location = useLocation();
+    const video = location.state?.video;
+    
+    if (!video) {
         return <div>Loading...</div>;
     }
 
@@ -22,16 +26,11 @@ const VideoDisplay = ({ mainVideo, relatedVideos, onVideoSelect }) => {
     return (
         <div>
             <div className="mainVideo">
-                <iframe title="video player" src={videoSource} />
+               <MainVideo video={video} />
             </div>
-            <div className="descripton">
-                <h4 className="header">{MainVideo.snippet.title}</h4>
-                <p>{mainVideo.snippet.description.substring(0, 150)}...</p>
-            </div>
+            
             <div className="relatedVideos">
-                {relatedVideos.map((video, index) =>(
-                    <RelatedVideos key={index} video={video} onVideoSelect={onVideoSelect} />
-                ))}
+                <RelatedVideos key={index} video={video} onVideoSelect={onVideoSelect} />
             </div> 
         </div>
     );   

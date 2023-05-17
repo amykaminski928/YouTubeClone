@@ -16,7 +16,7 @@ import { KEY } from '../../localkey';
 const SearchBar = ({ onFormSubmit }) => {
    
     const [searchTerm, setSearchTerm] = useState("poyvagal exercises"); //Initial search
-    const [searchResults, setSearchResults] = useState([]);
+    // const [searchResults, setSearchResults] = useState([]);
     // const location = useLocation();
     // const searchTerm = location.state?.searchTerm;
 
