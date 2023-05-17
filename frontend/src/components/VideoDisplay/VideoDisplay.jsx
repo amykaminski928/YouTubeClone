@@ -10,19 +10,19 @@
 // reorganized as display component for clicked video thumbnail
 
 import React from "react";
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import RelatedVideos from '../RelatedVideos/RelatedVideos';
 import MainVideo from "../MainVideo/MainVideo";
 
-function VideoDisplay() {
-    const location = useLocation();
-    const video = location.state?.video;
+function VideoDisplay({ video, videos, onVideoSelect }) {
+    // const location = useLocation();
+
     
     if (!video) {
         return <div>Loading...</div>;
     }
 
-    const videoSource = `https://www.youtube.com/embed/${mainVideo.id.videoId}`;
+   
     return (
         <div>
             <div className="mainVideo">
@@ -30,8 +30,9 @@ function VideoDisplay() {
             </div>
             
             <div className="relatedVideos">
-                <RelatedVideos key={index} video={video} onVideoSelect={onVideoSelect} />
-            </div> 
+                <RelatedVideos videos={videos.slice(1)} onVideoSelect={onVideoSelect} />
+            </div>
+           
         </div>
     );   
 };

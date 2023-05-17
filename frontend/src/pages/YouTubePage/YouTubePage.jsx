@@ -39,7 +39,7 @@ function YouTubePage() {
 
     const onVideoSelect = (video) => {
         setSelectedVideo(video);
-        fetchVideos();//refetch videos when a new video is selected
+        // fetchVideos();//refetch videos when a new video is selected
     };
 
 

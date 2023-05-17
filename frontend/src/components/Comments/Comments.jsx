@@ -33,12 +33,17 @@ const Comments = ({ video, user }) => {
             return;
         }
         
-        await axios.post(`http://127.0.0.1:8000/api/comments`, {
-            videoId: video.id.videoId,
-            userId: user.id,
-            comment: newComment
-        });
-        setNewComment('');
+        try{
+            await axios.post(`http://127.0.0.1:8000/api/comments`, {
+                videoId: video.id.videoId,
+                userId: user.id,
+                comment: newComment
+            });
+            setNewComment('');
+            fetchComments();
+        } catch (error) {
+            console.log(error);
+        }
     };
     
     return (
