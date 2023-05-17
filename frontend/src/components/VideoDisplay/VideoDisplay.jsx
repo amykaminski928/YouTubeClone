@@ -9,26 +9,28 @@
 // videos must be displayed differently on the search page and the youtubePage
 // reorganized as display component for clicked video thumbnail
 
-import React, {useState, useEffect} from "react";
-// import useAuth from "../../hooks/useAuth";
-// import {useNavigate} from "react-router-dom"
-// import Comments from "../Comments/Comments"
-// // import YouTubePage from "../../pages/YouTubePage/YouTubePage";
+import React from "react";
+import RelatedVideo from '../RelatedVideo/RelatedVideo';
 
-const VideoDisplay = ({ video }) => {
-    if (!video) {
+const VideoDisplay = ({ mainVideo, relatedVideos, onVideoSelect }) => {
+    if (!mainVideo) {
         return <div>Loading...</div>;
     }
 
-    const videoSource = `https://www.youtube.com/embed/${video.id.videoId}`;
+    const videoSource = `https://www.youtube.com/embed/${mainVideo.id.videoId}`;
     return (
         <div>
             <div className="mainVideo">
                 <iframe title="video player" src={videoSource} />
             </div>
             <div className="descripton">
-                <h4 className="header">{video.snippet.title}</h4>
-                <p>{video.snippet.description.substring(0, 150)}...</p>
+                <h4 className="header">{MainVideo.snippet.title}</h4>
+                <p>{mainVideo.snippet.description.substring(0, 150)}...</p>
+            </div>
+            <div className="relatedVideos">
+                {relatedVideos.map((video, index) =>(
+                    <RelatedVideo key={index} video={video} onVideoSelect={onVideoSelect} />
+                ))}
             </div> 
         </div>
     );   

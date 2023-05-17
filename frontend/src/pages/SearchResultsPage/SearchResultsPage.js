@@ -3,42 +3,37 @@
 // useLocation is: 
 
 import SearchBar from "../../components/SearchBar/SearchBar";
-import React, {useEffect, useState} from "react";
-import axios from "axios"
-import { KEY } from "../../../src/localkey";
-import { useLocation } from "react-router-dom";
-import VideoDisplay from "../../components/VideoDisplay/VideoDisplay";
+import React from "react";
+import { useState } from 'react';
+import RelatedVideo from "../../components/RelatedVideo/RelatedVideo";
 
 
 function SearchResultsPage() {
-    const [searchResults, setSearchResults] = useState([]);
-    const location = useLocation();
-    const searchTerm = location.state?.searchTerm;
+    const [videos, setVideos] = useState([]);
+    const [selectedVideo, setSelectedVideo] = useState(null);
 
-    const performSearch = async () => {
-        try {
-            const response = await axios.get(
-                `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}&part=snippet&maxResults=5`
-            );
-            setSearchResults(response.data.items);
-        } catch (error) {
-            console.log(error.message);
-        }
+    const onFormSubmit = (searchResults) => {
+        setVideos(searchResults);
+        setSelectedVideo(search[0]);
     };
 
-    useEffect(() => {
-        performSearch();
-    }, [searchTerm]);
+    const onVideoSelect = (video) => {
+        setSelectedVideo(video);
+    };
 
-    return(
-        <div className="container" >
-            {searchResults.length > 0 && (
-                <VideoDisplay
-                    mainVideo={searchResults[0]}
-                    relatedVideos={searchResults.slice(1)}
+    return ( <div className="container">
+        <SearchBar onFormSubmit={onFormSubmit} />
+        (selectedVideo && (
+            <div>
+            <RelatedVideo
+                video={selectedVideo}
+                onVideoSelect={onVideoSelect}
+                relatedVideos={videos.slice(1)}
             />
-            )}            
-        </div>);
+        </div>
+        )}            
+    </div>
+    );
 };
 
 

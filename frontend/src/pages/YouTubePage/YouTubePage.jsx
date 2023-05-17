@@ -36,30 +36,25 @@ function YouTubePage() {
             console.log(error.message);
         }
     };
+
     const onVideoSelect = (video) => {
         setSelectedVideo(video);
         fetchVideos();//refetch videos when a new video is selected
     };
 
-    const onSearchSubmit =(term) => {
-        setSearchTerm(term)
-    };
 
-    return (
-        <div className="container">
-            <SearchBar onSearchSubmit={onSearchSubmit} />
-            {selectedVideo && (
-                <div>
-                <VideoDisplay
-                    video={selectedVideo}
-                    onVideoSelect={onVideoSelect}
-                    relatedVideos={videos.slice(1)}
-                />
-                <Comments video={selectedVideo} user={user} isLoggedIn={isLoggedIn} />
-            </div>
-            )}            
-        </div>
-    );
+    return ( <div className="container">
+{videos.length > 0 && (
+    <VideoDisplay
+        mainVideo={videos[0]}
+        relatedVideos={videos.slice(1)}
+        onVideoSelect={onVideoSelect}
+    />
+    )}
+    <Comments video={selectedVideo} user={user} isLoggedIn={isLoggedIn} />
+</div>
+
+);
 }
 export default YouTubePage;
 

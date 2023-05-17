@@ -13,11 +13,9 @@ import SearchResultsPage from "./pages/SearchResultsPage/SearchResultsPage"
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
-import SearchBar from "./components/SearchBar/SearchBar";
 
-// Util Imports
-import PrivateRoute from "./utils/PrivateRoute";
-import VideoDisplay from "./components/VideoDisplay/VideoDisplay";
+
+
 
 function App(props) {
 
@@ -27,23 +25,16 @@ function App(props) {
       
       
       <Navbar />
-      <SearchBar/>
+      
       
       <Routes>
         
-      {/* <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <YouTubePage />
-            </PrivateRoute>
-          }
-        /> */}
-        <Route path="/" element={<YouTubePage />} />
+ 
+        <Route path="/" element={<SearchResultsPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/search/:videoId" element={<SearchResultsPage />} />
-        <Route path="/search" element={<SearchResultsPage />} />
+        <Route path="/video/:videoId" element={<YouTubePage />} />
+       
       </Routes>
       
       <Footer />

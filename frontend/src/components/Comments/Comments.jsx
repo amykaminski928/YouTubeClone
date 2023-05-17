@@ -3,10 +3,10 @@
 // contain a form for submitting comments if user is logged in
 
 import React, { useState, useEffect } from "react";
-// import useAuth from "../../hooks/useAuth";
+
 // import "..Comments.css";
 import axios from "axios";
-import useCustomForm from "../../hooks/useCustomForm";
+
 
 
 const Comments = ({ video, user }) => {
@@ -29,7 +29,7 @@ const Comments = ({ video, user }) => {
     const onSubmit = async event => {
         event.preventDefault();
         if (!user) {
-            alert("You must be logged in to post a comment.");
+            alert("Please log in to post a comment.");
             return;
         }
         

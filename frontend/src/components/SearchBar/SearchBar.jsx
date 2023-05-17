@@ -8,23 +8,41 @@
 // Try passing the search term as a state Param when 
 // navigating to the searchResultsPage.
 
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-//Attempt 2: 
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { KEY } from '../../localkey';
 
 //this component allows the user to search for videos:
 const SearchBar = ({ onFormSubmit }) => {
-    const [searchTerm, setSearchTerm] = useState('');
+   
+    const [searchTerm, setSearchTerm] = useState("poyvagal exercises"); //Initial search
+    const [searchResults, setSearchResults] = useState([]);
+    // const location = useLocation();
+    // const searchTerm = location.state?.searchTerm;
 
-    // function to handle form submission
+    const performSearch = async () => {
+        try {
+            const response = await axios.get(
+                `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}&part=snippet&maxResults=5`
+            );
+            setSearchResults(response.data.items);
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
+    useEffect(() => {
+        performSearch();
+    }, [searchTerm]);
+    // function to perform search when form is submitted.
     const onSubmit = event => {
         event.preventDefault();
-        onFormSubmit(searchTerm);
+        performSearch();
     };
 
     return (
         <div className="search-bar">
-            <form onSubmit={onSubmit} classname="searc-form">
+            <form onSubmit={onSubmit} classname="search-form">
                 <div className="field">
                     <label>Video Search</label>
                     <input
