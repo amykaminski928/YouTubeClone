@@ -5,8 +5,8 @@
 import SearchBar from "../../components/SearchBar/SearchBar";
 import React from "react";
 import { useState } from 'react';
-import RelatedVideo from "../../components/RelatedVideo/RelatedVideo";
-
+import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
+import MainVideo from "../../components/MainVideo/MainVideo";
 
 function SearchResultsPage() {
     const [videos, setVideos] = useState([]);
@@ -14,7 +14,7 @@ function SearchResultsPage() {
 
     const onFormSubmit = (searchResults) => {
         setVideos(searchResults);
-        setSelectedVideo(search[0]);
+        setSelectedVideo(searchResults[0]);
     };
 
     const onVideoSelect = (video) => {
@@ -23,15 +23,15 @@ function SearchResultsPage() {
 
     return ( <div className="container">
         <SearchBar onFormSubmit={onFormSubmit} />
-        (selectedVideo && (
-            <div>
-            <RelatedVideo
-                video={selectedVideo}
-                onVideoSelect={onVideoSelect}
-                relatedVideos={videos.slice(1)}
-            />
-        </div>
-        )}            
+        
+            <div className="search-results">
+                <MainVideo video={selectedVideo} />
+                <RelatedVideos
+                    
+                    onVideoSelect={onVideoSelect}
+                    videos={videos.slice(1)}
+                />
+            </div>         
     </div>
     );
 };

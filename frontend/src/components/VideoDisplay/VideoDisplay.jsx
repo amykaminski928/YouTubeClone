@@ -10,7 +10,8 @@
 // reorganized as display component for clicked video thumbnail
 
 import React from "react";
-import RelatedVideo from '../RelatedVideo/RelatedVideo';
+import RelatedVideos from '../RelatedVideos/RelatedVideos';
+import MainVideo from "../MainVideo/MainVideo";
 
 const VideoDisplay = ({ mainVideo, relatedVideos, onVideoSelect }) => {
     if (!mainVideo) {
@@ -29,7 +30,7 @@ const VideoDisplay = ({ mainVideo, relatedVideos, onVideoSelect }) => {
             </div>
             <div className="relatedVideos">
                 {relatedVideos.map((video, index) =>(
-                    <RelatedVideo key={index} video={video} onVideoSelect={onVideoSelect} />
+                    <RelatedVideos key={index} video={video} onVideoSelect={onVideoSelect} />
                 ))}
             </div> 
         </div>

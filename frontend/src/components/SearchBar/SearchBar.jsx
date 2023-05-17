@@ -25,7 +25,8 @@ const SearchBar = ({ onFormSubmit }) => {
             const response = await axios.get(
                 `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}&part=snippet&maxResults=5`
             );
-            setSearchResults(response.data.items);
+            // setSearchResults(response.data.items);
+            onFormSubmit(response.data.items);
         } catch (error) {
             console.log(error.message);
         }
@@ -37,7 +38,7 @@ const SearchBar = ({ onFormSubmit }) => {
     // function to perform search when form is submitted.
     const onSubmit = event => {
         event.preventDefault();
-        performSearch();
+        performSearch(searchTerm);
     };
 
     return (

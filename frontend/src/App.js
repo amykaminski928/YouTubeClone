@@ -26,10 +26,8 @@ function App(props) {
       
       <Navbar />
       
-      
       <Routes>
         
- 
         <Route path="/" element={<SearchResultsPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
