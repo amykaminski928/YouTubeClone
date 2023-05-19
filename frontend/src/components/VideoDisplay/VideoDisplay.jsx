@@ -16,7 +16,8 @@ import MainVideo from "../MainVideo/MainVideo";
 
 function VideoDisplay({ video, videos, onVideoSelect }) {
     // const location = useLocation();
-
+    console.log(video);
+    
     
     if (!video) {
         return <div>Loading...</div>;

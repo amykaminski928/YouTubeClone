@@ -1,10 +1,11 @@
 import React from "react";
+import "./VideoItem.css";
 
 // This component will represent a single video in the search list
 
 const VideoItem = ({ video, onVideoSelect }) => {
     return (
-        <div onClick={() => onVideoSelect(video)} className="video-item">
+        <div onClick={() => {  onVideoSelect(video)}} className="video-item">
             <img 
                 alt={video.snippet.title}
                 className="thumbnail"

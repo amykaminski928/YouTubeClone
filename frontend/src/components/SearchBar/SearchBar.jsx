@@ -13,35 +13,17 @@ import axios from 'axios';
 import { KEY } from '../../localkey';
 
 //this component allows the user to search for videos:
-const SearchBar = ({ onFormSubmit }) => {
+const SearchBar = ({ onSearch }) => {
    
     const [searchTerm, setSearchTerm] = useState(""); 
-    const [isSubmitted, setIsSubmitted] = useState(false);
-   
-
-    const performSearch = async (term) => {
-        try {
-            const response = await axios.get(
-                `https://www.googleapis.com/youtube/v3/search?q=${term}&key=${KEY}&part=snippet&maxResults=5`
-            );
-            onFormSubmit(response.data.items);
-        } catch (error) {
-            console.log(error.message);
-        }
+    
+    
+    const onSubmit = (event) => {
+        event.preventDefault();
+        onSearch(searchTerm);
     };
 
-    // initial search upon render
-    useEffect(() => {
-        performSearch("Polyvagal Exercises");
-    }, []);
-
-    // performSearch when form is submitted.
-    useEffect(() => {
-        if(isSubmitted) {
-            performSearch(searchTerm);
-            setIsSubmitted(false);
-        }
-    }, [isSubmitted]);
+   
 
     return (
         <div className="search-bar">

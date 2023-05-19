@@ -8,7 +8,7 @@ const RelatedVideos = ({ videos, onVideoSelect }) => {
         return <VideoItem key={video.id.videoId} video={video} onVideoSelect={onVideoSelect} />
     });
 
-    return <div className="ui relaxed divided list">{renderedList}</div>;     
+    return <div className="video-set">{renderedList}</div>;     
     
 };
 

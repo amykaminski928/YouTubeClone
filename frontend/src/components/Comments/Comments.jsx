@@ -15,13 +15,22 @@ const Comments = ({ video, user }) => {
     // const [user, token] = useAuth();
     
     //Fetch comments when the video changes: 
-    useEffect(() => {
+    
         const fetchComments = async () => {
-            const response = await axios.get(`http://127.0.0.1:8000/api/comments/${video.videoId}`);
+            if (video.videoId) {
+            try {
+            const response = await axios.get(`http://127.0.0.1:8000/api/comments/${video.videoId}/`);
             setComments(response.data);
+            } catch (error) {
+                console.log(error.message);
+            }
+            }
         };
 
-        fetchComments();
+    useEffect(() => {
+        if (video){
+        fetchComments(video.videoId);
+        }
     }, [video]);
 
     // function to handle form submission:
@@ -34,7 +43,7 @@ const Comments = ({ video, user }) => {
         }
         
         try{
-            await axios.post(`http://127.0.0.1:8000/api/comments`, {
+            await axios.post(`http://127.0.0.1:8000/api/comments/`, {
                 videoId: video.id.videoId,
                 userId: user.id,
                 comment: newComment
@@ -64,7 +73,7 @@ const Comments = ({ video, user }) => {
             </ul>
         </div>
     );
-    };
+};
     
     export default Comments;
 //         const fetchComments = async () => {
