@@ -9,8 +9,7 @@
 // navigating to the searchResultsPage.
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { KEY } from '../../localkey';
+
 
 //this component allows the user to search for videos:
 const SearchBar = ({ onSearch }) => {

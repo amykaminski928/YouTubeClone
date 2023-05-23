@@ -31,7 +31,7 @@ function App(props) {
         <Route path="/" element={<SearchResultsPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/video/:videoId" element={<YouTubePage />} />
+        <Route path="/:videoId/" element={<YouTubePage />} />
        
       </Routes>
       

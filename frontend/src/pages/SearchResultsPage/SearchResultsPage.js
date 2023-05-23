@@ -8,13 +8,13 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { KEY } from "../../localkey";
+import VideoDisplay from "../../components/VideoDisplay/VideoDisplay";
 import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
-
 
 function SearchResultsPage() {
     const [videos, setVideos] = useState([]);
     const [searchTerm, setSearchTerm] = useState("polyvagal exercises"); //Initial search
-    const [selectedVideo, setSelectedVideo] =useState([]);
+    const [selectedVideo, setSelectedVideo] =useState(null);
      const navigate = useNavigate();
      
      const onSearch = async(searchTerm) => {
@@ -23,6 +23,7 @@ function SearchResultsPage() {
             const response = await axios.get(
                 `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}&part=snippet&maxResults=5`
             );
+          
             setVideos(response.data.items);
             setSelectedVideo(response.data.items[0]);
         } catch (error) {
@@ -36,25 +37,29 @@ function SearchResultsPage() {
    
     useEffect(() => {
       
-       setSearchTerm();
-       console.log(searchTerm);
+       
+       console.log('search term changed to: ', searchTerm);
+       onSearch(searchTerm);
         console.log(selectedVideo);
     }, [searchTerm]);
     
     const onVideoSelect = (video) => {
-        navigate(`/video/${video.id.videoId}`, { state: { video } });
-
-    };
+        navigate(`/${video.id.videoId}/`, { state: { video } });
+        console.log(videos); };
+    
+    useEffect(() => {
+        console.log('selected video: ', selectedVideo);
+    }, [selectedVideo]);
 
     return ( <div className="container">
-        <SearchBar onSearch={onSearch} />
+        <SearchBar onSearch={setSearchTerm} />
         
             <div className="search-results">
-              
-                <RelatedVideos
+                <RelatedVideos 
+                    video={selectedVideo}
                     videos={videos.slice(1)}
                     onVideoSelect={onVideoSelect}
-                />
+                 />
             </div>         
     </div>
     );
