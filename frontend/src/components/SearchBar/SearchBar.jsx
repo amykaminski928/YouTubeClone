@@ -14,25 +14,27 @@ import React, { useState, useEffect } from 'react';
 //this component allows the user to search for videos:
 const SearchBar = ({ onSearch }) => {
    
-    const [searchTerm, setSearchTerm] = useState(""); 
+    const [newTerm, setMewTerm] = useState(""); 
     
     
-    const onSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        onSearch(searchTerm);
+        onSearch(newTerm);
     };
 
-   
+    const handleChange = (event) => {
+        setMewTerm(event.target.value);
+    }
 
     return (
         <div className="search-bar">
-            <form onSubmit={onSubmit} className="search-form">
+            <form onSubmit={handleSubmit} className="search-form">
                 <div className="field">
                     <label>Video Search</label>
                     <input
                         type="text"
-                        value={searchTerm}
-                        onChange={event => setSearchTerm(event.target.value)}
+                        value={newTerm}
+                        onChange={handleChange}
                     />
                     <p>State your terms in the Search Bar above!</p>
                 </div>

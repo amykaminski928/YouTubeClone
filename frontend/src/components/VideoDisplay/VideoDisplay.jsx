@@ -14,7 +14,7 @@ import React from "react";
 import RelatedVideos from '../RelatedVideos/RelatedVideos';
 import MainVideo from "../MainVideo/MainVideo";
 
-function VideoDisplay({ video, videos, onVideoSelect }) {
+function VideoDisplay({ video, videos, onVideoSelect, selectedVideo }) {
     // const location = useLocation();
     console.log(video);
     
@@ -31,7 +31,11 @@ function VideoDisplay({ video, videos, onVideoSelect }) {
             </div>
             
             <div className="relatedVideos">
-                <RelatedVideos videos={videos.slice(1)} onVideoSelect={onVideoSelect} />
+                <RelatedVideos 
+                video={selectedVideo}
+                videos={videos.slice(1)} 
+                onVideoSelect={onVideoSelect}
+                selectedVideo={selectedVideo} />
             </div>
            
         </div>

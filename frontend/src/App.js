@@ -1,6 +1,8 @@
 // General Imports
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -18,7 +20,13 @@ import Footer from "./components/Footer/Footer";
 
 
 function App(props) {
+  const [searchTerm, setSearchTerm] = useState("Polyvagal Exercises");
+  const navigate = useNavigate();
 
+  const onSearch = (term) => {
+    setSearchTerm(term);
+    navigate("/")
+  }
   
   return (
     <div className="App">
@@ -28,10 +36,10 @@ function App(props) {
       
       <Routes>
         
-        <Route path="/" element={<SearchResultsPage />} />
+        <Route path="/" element={<SearchResultsPage searchTerm={searchTerm} onSearch={onSearch} />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/:videoId/" element={<YouTubePage />} />
+        <Route path="/:videoId/" element={<YouTubePage searchTerm={searchTerm} onSearch={onSearch}/>} />
        
       </Routes>
       
