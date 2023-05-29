@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { KEY } from "../../localkey";
 import VideoDisplay from "../../components/VideoDisplay/VideoDisplay";
 import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
+import './SearchResultsPage.css'
 
 function SearchResultsPage({ searchTerm, onSearch }) {
     const [videos, setVideos] = useState([]);
@@ -54,9 +55,9 @@ useEffect(() => {
         navigate(`/${video.id.videoId}/`, { state: { video } });
         console.log('onVideoSelect in SearchResults called'); };
     
-    // useEffect(() => {
-    //     console.log('selected video: ', selectedVideo);
-    // }, [selectedVideo]);
+    useEffect(() => {
+        console.log('selected video: ', selectedVideo);
+    }, [selectedVideo]);
 
     return ( <div className="container">
         <SearchBar onSearch={onSearch} />

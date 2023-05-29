@@ -1,3 +1,19 @@
 .video-item {
     cursor: pointer;
+    width: 200px; 
+    margin: 10px;
+}
+
+.header {
+    font-size: medium;
+}
+
+.content (
+    font-color: var(--dark)
+)
+
+.thumbnail {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; 
 }

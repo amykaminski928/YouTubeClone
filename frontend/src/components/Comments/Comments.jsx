@@ -4,22 +4,22 @@
 
 import React, { useState, useEffect } from "react";
 
-// import "..Comments.css";
+import "./Comments.css";
 import axios from "axios";
+import useAuth from "../../hooks/useAuth";
 
 
-
-const Comments = ({ video, user }) => {
+const Comments = ({ video }) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
-    // const [user, token] = useAuth();
+    const [user, token] = useAuth();
     
     //Fetch comments when the video changes: 
     
         const fetchComments = async () => {
             if (video.videoId) {
             try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/comments/${video.videoId}/`);
+            const response = await axios.get(`http://127.0.0.1:8000/api/comments/${video.id.videoId}/`);
             setComments(response.data);
             } catch (error) {
                 console.log(error.message);
@@ -37,19 +37,29 @@ const Comments = ({ video, user }) => {
 
     const onSubmit = async event => {
         event.preventDefault();
+        console.log("user:", user);
+        console.log("video:", video);
         if (!user) {
             alert("Please log in to post a comment.");
             return;
         }
         
         try{
-            await axios.post(`http://127.0.0.1:8000/api/comments/`, {
-                videoId: video.id.videoId,
-                userId: user.id,
-                comment: newComment
-            });
+            await axios.post(`http://127.0.0.1:8000/api/comments/`, 
+                {
+                    video_id: video.videoId,
+                    user: user.id,
+                    username: user.username,
+                    text: newComment,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
             setNewComment('');
-            fetchComments();
+            fetchComments(video.videoId);
         } catch (error) {
             console.log(error);
         }
@@ -68,7 +78,8 @@ const Comments = ({ video, user }) => {
             </form>
             <ul>
                 {comments.map((comment, index) => (
-                    <li key={index}>{comment}</li>
+                    <li key={index}>
+                        <strong>{comment.user.username}:</strong>{comment.text}</li>
                 ))}
             </ul>
         </div>

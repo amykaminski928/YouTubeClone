@@ -4,8 +4,6 @@ import "./App.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-
 // Pages Imports
 import YouTubePage from "./pages/YouTubePage/YouTubePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -16,7 +14,7 @@ import SearchResultsPage from "./pages/SearchResultsPage/SearchResultsPage"
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 
-
+import { AuthProvider } from "./context/AuthContext";
 
 
 function App(props) {
@@ -29,6 +27,7 @@ function App(props) {
   }
   
   return (
+    <AuthProvider>
     <div className="App">
       
       
@@ -44,7 +43,9 @@ function App(props) {
       </Routes>
       
       <Footer />
+      
     </div>
+    </AuthProvider>
   );
 }
 
