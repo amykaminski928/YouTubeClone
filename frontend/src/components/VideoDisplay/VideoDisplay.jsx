@@ -9,37 +9,38 @@
 // videos must be displayed differently on the search page and the youtubePage
 // reorganized as display component for clicked video thumbnail
 
-import React from "react";
+// import React from "react";
 // import { useLocation } from 'react-router-dom';
-import RelatedVideos from '../RelatedVideos/RelatedVideos';
-import MainVideo from "../MainVideo/MainVideo";
-import Comments from "../Comments/Comments";
-import useAuth from "../../hooks/useAuth";
+// import RelatedVideos from '../RelatedVideos/RelatedVideos';
+// import MainVideo from "../MainVideo/MainVideo";
+// import Comments from "../Comments/Comments";
+// import useAuth from "../../hooks/useAuth";
 
-function VideoDisplay({ selectedVideo, videos, onVideoSelect, user, isLoggedIn }) {
-    console.log("VideoDisplay", selectedVideo);
-    
-    
-    if (!selectedVideo) {
-        return <div>Loading...</div>;
-    }
+// function VideoDisplay({ selectedVideo, videos, onVideoSelect, user, isLoggedIn }) {
+//     console.log("VideoDisplay", selectedVideo);
+//         if (!selectedVideo) {
+//         return <div>Loading...</div>;
+//     }
    
-    return (
-        <div>
-            <iframe className="mainVideo" title="video player" src={`https://www.youtube.com/embed/${selectedVideo.id.videoId}/`}>
-               <MainVideo video={selectedVideo} />
-            </iframe>
-            <Comments video={selectedVideo} user={user} isLoggedIn={isLoggedIn} />
-            <div className="relatedVideos">
-                <RelatedVideos 
-                selectedVideo={selectedVideo}
-                videos={videos.slice(1, 6)} 
-                onVideoSelect={onVideoSelect}
-                />
-            </div>
+//     return (
+//         <div>
+//             <p>No tis I! The Video Display code that is rendered here!</p>
+//             <iframe className="mainVideo" title="video player" src={`https://www.youtube.com/embed/${selectedVideo.id.videoId}/`}>
+//                <MainVideo video={selectedVideo} />
+//             </iframe>
+//             <div>
+//             <Comments video={selectedVideo} user={user} isLoggedIn={isLoggedIn} />
+//             </div>
+//             <div className="relatedVideos">
+//                 <RelatedVideos 
+//                 selectedVideo={selectedVideo}
+//                 videos={videos.slice(1, 6)} 
+//                 onVideoSelect={onVideoSelect}
+//                 />
+//             </div>
            
-        </div>
-    );   
-};
+//         </div>
+//     );   
+// };
 
-export default VideoDisplay;
+// export default VideoDisplay;

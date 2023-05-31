@@ -13,13 +13,13 @@ const Comments = ({ selectedVideo, isLoggedIn }) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
     const [user, token] = useAuth();
-    
+    const { id: { videoId } } = selectedVideo;
     //Fetch comments when the video changes: 
-    
+    useEffect(() => {
         const fetchComments = async () => {
-            if (selectedVideo.videoId) {
+            if (selectedVideo) {
             try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/comments/${selectedVideo.videoId}/`);
+            const response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}/`);
             setComments(response.data);
             } catch (error) {
                 console.log(error.message);
@@ -27,18 +27,17 @@ const Comments = ({ selectedVideo, isLoggedIn }) => {
             }
         };
 
-    useEffect(() => {
-        if (selectedVideo)
-        fetchComments();
-    }, [selectedVideo]);
 
+        fetchComments();
+    }, [selectedVideo, selectedVideo.videoId]);
+        console.log("This is the way",selectedVideo, selectedVideo.videoId)
     // function to handle form submission:
 
     const onSubmit = async event => {
         event.preventDefault();
         console.log("user:", user);
         console.log("video:", selectedVideo);
-        if (!user) {
+        if (!isLoggedIn) {
             alert("Please log in to post a comment.");
             return;
         }
@@ -61,7 +60,7 @@ const Comments = ({ selectedVideo, isLoggedIn }) => {
             setNewComment('');
             // fetchComments();
         } catch (error) {
-            console.log(error);
+            console.log(error.message);
         }
     };
     

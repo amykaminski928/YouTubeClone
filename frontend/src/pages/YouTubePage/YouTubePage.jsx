@@ -7,9 +7,11 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { KEY } from "../../../src/localkey";
 import SearchBar from "../../components/SearchBar/SearchBar";
-//import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
-import VideoDisplay from "../../components/VideoDisplay/VideoDisplay";
+import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
+// import VideoDisplay from "../../components/VideoDisplay/VideoDisplay";
 import { useLocation, useParams } from 'react-router-dom';
+import MainVideo from "../../components/MainVideo/MainVideo";
+import Comments from "../../components/Comments/Comments";
 
 function YouTubePage({ searchTerm, onSearch }) {
     
@@ -18,8 +20,8 @@ function YouTubePage({ searchTerm, onSearch }) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const { videoId } = useParams();
     const location = useLocation();
-    const video = location.state ? location.state.video : null;
-    const [selectedVideo, setSelectedVideo] = useState(location.state?.video || null)
+    const initialVideo = location.state?.video || null;
+    const [selectedVideo, setSelectedVideo] = useState(initialVideo)
     
     useEffect(() => {   
         const fetchVideos = async () => {
@@ -34,7 +36,7 @@ function YouTubePage({ searchTerm, onSearch }) {
         };
     
         fetchVideos();
-    }, [searchTerm, selectedVideo]);
+    }, [searchTerm, selectedVideo, videoId]);
 
     const onVideoSelect = (video) => {
         if (videos.includes(video)) {
@@ -50,26 +52,30 @@ function YouTubePage({ searchTerm, onSearch }) {
     useEffect(() => {
         setIsLoggedIn(!!user);
         console.log(selectedVideo);
-    }, [user, searchTerm]);
+    }, [user, selectedVideo]);
     
     
     return (  
     <div className="container">
-        <div className="Search-bar">
+        <div className="search-bar">
             <SearchBar onSearch={onSearch} />
         </div>
-        <div className="Video-Display">
+   
+        <div className="main-video">
             {videos.length > 0 && (
-            <VideoDisplay 
-                selectedVideo={selectedVideo}
-                videos={videos}
-                onVideoSelect={onVideoSelect}
-                user={user}
-                isLoggedIn={isLoggedIn}
-            />
+            <MainVideo video={selectedVideo} />
                 )}
         </div> 
-        {/* <div className="Related-Videos">
+        <div className="comments">
+            {selectedVideo.videoId > 0 && (
+                <Comments 
+                selectedVideo={selectedVideo}
+                isLoggedIn={isLoggedIn}
+                />
+            )}
+
+        </div>
+        <div className="Related-Videos">
             {videos.length > 0 && (
                 <RelatedVideos 
                     video={selectedVideo}
@@ -78,7 +84,7 @@ function YouTubePage({ searchTerm, onSearch }) {
                     selectedVideo={selectedVideo}
                 /> 
             )}  
-        </div> */}
+        </div>
     </div>
 
 );

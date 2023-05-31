@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MainVideo = ({ video }) => {
-    console.log(video);
+    console.log("Hello There I'm am appearing from MainVideo", video);
     if (!video) return <div>Loading...</div>;
 
     const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}/`;
