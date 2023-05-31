@@ -45,7 +45,8 @@ const Comments = ({ selectedVideo, isLoggedIn }) => {
         
         try{
             await axios.post(`http://127.0.0.1:8000/api/comments/`, 
-                {
+                {   
+                    selectedVideo: selectedVideo,
                     video_id: selectedVideo.videoId,
                     user: user.id,
                     username: user.username,

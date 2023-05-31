@@ -4,6 +4,7 @@ import "./VideoItem.css";
 // This component will represent a single video in the search list
 
 const VideoItem = ({ video, onVideoSelect }) => {
+    console.log("video item recieving video prop", video);
     return (
         <div onClick={() => {  onVideoSelect(video)}} className="video-item">
             <img 

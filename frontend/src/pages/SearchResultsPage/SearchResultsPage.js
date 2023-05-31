@@ -5,7 +5,7 @@
 import SearchBar from "../../components/SearchBar/SearchBar";
 import React, { useEffect } from "react";
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { KEY } from "../../localkey";
 import VideoDisplay from "../../components/VideoDisplay/VideoDisplay";
@@ -43,13 +43,15 @@ useEffect(() => {
     //     setVideos(searchResults);
     // };
    
+    const prevSearchTermRef = useRef();
+
     useEffect(() => {
-      
-       
-       
-       onSearch(searchTerm);
-       console.log('search term changed to: ', searchTerm);
-    }, [searchTerm]);
+      if (searchTerm !== prevSearchTermRef.current) {
+        onSearch(searchTerm);
+        console.log('search term changed to: ', searchTerm);
+      }
+      prevSearchTermRef.current = searchTerm;
+    }, [searchTerm, onSearch]);
     
     const onVideoSelect = (video) => {
         setSelectedVideo(video)
@@ -66,7 +68,7 @@ useEffect(() => {
             <div className="search-results">
                 {videos.length > 0 && (
                 <RelatedVideos 
-                    video={selectedVideo}
+                    
                     videos={videos.slice(0)}
                     onVideoSelect={onVideoSelect}
                     selectedVideo={selectedVideo}
