@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { KEY } from "../../../src/localkey";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
+//import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
 import VideoDisplay from "../../components/VideoDisplay/VideoDisplay";
 import { useLocation, useParams } from 'react-router-dom';
 
@@ -53,32 +53,32 @@ function YouTubePage({ searchTerm, onSearch }) {
     }, [user, searchTerm]);
     
     
-    return ( 
-      
+    return (  
     <div className="container">
         <div className="Search-bar">
             <SearchBar onSearch={onSearch} />
         </div>
         <div className="Video-Display">
-            {/* {videos.length > 0 && ( */}
-            <VideoDisplay />
-                {/* // video={selectedVideo}
-                // videos={videos}
-                // user={user}
-                // isLoggedIn={isLoggedIn}
-             /> */}
-            {/* )}
+            {videos.length > 0 && (
+            <VideoDisplay 
+                selectedVideo={selectedVideo}
+                videos={videos}
+                onVideoSelect={onVideoSelect}
+                user={user}
+                isLoggedIn={isLoggedIn}
+            />
+                )}
         </div> 
-        <div className="Related-Videos">
+        {/* <div className="Related-Videos">
             {videos.length > 0 && (
                 <RelatedVideos 
                     video={selectedVideo}
                     videos={videos.slice(0)}
                     onVideoSelect={onVideoSelect}
                     selectedVideo={selectedVideo}
-                /> */}
-            {/* )}  */}
-        </div>
+                /> 
+            )}  
+        </div> */}
     </div>
 
 );

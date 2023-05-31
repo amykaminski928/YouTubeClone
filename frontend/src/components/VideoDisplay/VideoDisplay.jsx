@@ -16,29 +16,26 @@ import MainVideo from "../MainVideo/MainVideo";
 import Comments from "../Comments/Comments";
 import useAuth from "../../hooks/useAuth";
 
-function VideoDisplay({ video, videos, onVideoSelect, selectedVideo }) {
-    const [user, token, loginUser] = useAuth();
+function VideoDisplay({ selectedVideo, videos, onVideoSelect, user, isLoggedIn }) {
     console.log("VideoDisplay", selectedVideo);
     
     
     if (!selectedVideo) {
         return <div>Loading...</div>;
     }
-
-    const isLoggedIn = !!user;
    
     return (
         <div>
-            <iframe className="mainVideo">
-               <MainVideo selectedVideo={selectedVideo} />
+            <iframe className="mainVideo" title="video player" src={`https://www.youtube.com/embed/${selectedVideo.id.videoId}/`}>
+               <MainVideo video={selectedVideo} />
             </iframe>
-            <Comments video={video} user={user} />
+            <Comments video={selectedVideo} user={user} isLoggedIn={isLoggedIn} />
             <div className="relatedVideos">
                 <RelatedVideos 
-                video={video}
-                videos={videos.slice(0)} 
+                selectedVideo={selectedVideo}
+                videos={videos.slice(1, 6)} 
                 onVideoSelect={onVideoSelect}
-                selectedVideo={selectedVideo} />
+                />
             </div>
            
         </div>

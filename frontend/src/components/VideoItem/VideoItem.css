@@ -8,9 +8,9 @@
     font-size: medium;
 }
 
-.content (
+.content {
     font-color: var(--dark)
-)
+}
 
 .thumbnail {
     display: flex;

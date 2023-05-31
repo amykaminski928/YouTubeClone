@@ -1,5 +1,5 @@
 // General Imports
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,7 @@ import Footer from "./components/Footer/Footer";
 import { AuthProvider } from "./context/AuthContext";
 
 
-function App(props) {
+function App() {
   const [searchTerm, setSearchTerm] = useState("Polyvagal Exercises");
   const navigate = useNavigate();
 
@@ -28,6 +28,8 @@ function App(props) {
   
   return (
     <AuthProvider>
+      
+      
     <div className="App">
       
       
@@ -45,6 +47,8 @@ function App(props) {
       <Footer />
       
     </div>
+   
+   
     </AuthProvider>
   );
 }

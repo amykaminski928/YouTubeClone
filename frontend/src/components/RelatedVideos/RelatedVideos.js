@@ -5,8 +5,8 @@ import VideoItem from "../VideoItem/VideoItem";
 
 const RelatedVideos = ({ videos, onVideoSelect, selectedVideo }) => {
     const renderedList = videos
-    .filter((video, index) => 
-        index < 4 && selectedVideo && video.id.videoId !== selectedVideo.id.videoId)
+    .filter((videos, index) => 
+        index < 10 && selectedVideo && videos.id.videoId !== selectedVideo.id.videoId)
         .map((video) => {
             return <VideoItem key={video.id.videoId} video={video} onVideoSelect={onVideoSelect} />   
         });

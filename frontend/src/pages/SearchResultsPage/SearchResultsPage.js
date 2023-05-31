@@ -23,11 +23,11 @@ function SearchResultsPage({ searchTerm, onSearch }) {
         const fetchVideos = async () => {
         try {
             const response = await axios.get(
-                `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}&part=snippet&maxResults=7`
+                `https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${KEY}&part=snippet&maxResults=10`
             );
           
             setVideos(response.data.items);
-            setSelectedVideo(response.data.items[0]);
+            
         } catch (error) {
             console.log(error.message);
         }
@@ -43,15 +43,16 @@ useEffect(() => {
     //     setVideos(searchResults);
     // };
    
-    // useEffect(() => {
+    useEffect(() => {
       
        
-    //    console.log('search term changed to: ', searchTerm);
-    //    onSearch(searchTerm);
-    //     console.log(selectedVideo);
-    // }, [searchTerm]);
+       
+       onSearch(searchTerm);
+       console.log('search term changed to: ', searchTerm);
+    }, [searchTerm]);
     
     const onVideoSelect = (video) => {
+        setSelectedVideo(video)
         navigate(`/${video.id.videoId}/`, { state: { video } });
         console.log('onVideoSelect in SearchResults called'); };
     
@@ -63,10 +64,10 @@ useEffect(() => {
         <SearchBar onSearch={onSearch} />
         
             <div className="search-results">
-                {videos.length > 1 && (
+                {videos.length > 0 && (
                 <RelatedVideos 
                     video={selectedVideo}
-                    videos={videos.slice(1)}
+                    videos={videos.slice(0)}
                     onVideoSelect={onVideoSelect}
                     selectedVideo={selectedVideo}
                  />

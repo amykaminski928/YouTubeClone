@@ -14,7 +14,7 @@ import React, { useState, useEffect } from 'react';
 //this component allows the user to search for videos:
 const SearchBar = ({ onSearch }) => {
    
-    const [newTerm, setMewTerm] = useState(""); 
+    const [newTerm, setNewTerm] = useState(""); 
     
     
     const handleSubmit = (event) => {
@@ -23,7 +23,7 @@ const SearchBar = ({ onSearch }) => {
     };
 
     const handleChange = (event) => {
-        setMewTerm(event.target.value);
+        setNewTerm(event.target.value);
     }
 
     return (
@@ -36,8 +36,10 @@ const SearchBar = ({ onSearch }) => {
                         value={newTerm}
                         onChange={handleChange}
                     />
-                    <p>State your terms in the Search Bar above!</p>
                 </div>
+                    
+                <p>State your terms in the Search Bar above!</p>
+                
                 <button type="submit">Search</button>
             </form>
         </div>
