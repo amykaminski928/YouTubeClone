@@ -9,8 +9,9 @@ from rest_framework.decorators import api_view, permission_classes
 @api_view (['GET'])
 @permission_classes([AllowAny])
 def get_comments_by_video(request, video_id):
-    print(video_id)
+    print('user', f"{request.user.id} {request.user.username}")
     comments = Comment.objects.filter(video_id=video_id)
+    print('filtered objects', f"{video_id}")
     serializer = CommentSummarySerializer(comments, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 

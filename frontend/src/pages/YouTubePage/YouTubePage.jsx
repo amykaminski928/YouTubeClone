@@ -14,15 +14,18 @@ import MainVideo from "../../components/MainVideo/MainVideo";
 import Comments from "../../components/Comments/Comments";
 
 function YouTubePage({ searchTerm, onSearch }) {
-    
+    const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState("");
+    // const [user, token] = useAuth();
+    // const { id: { videoId } } = selectedVideo;
     const [user, token] = useAuth();
     const [videos, setVideos] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const { videoId } = useParams();
     const location = useLocation();
     const initialVideo = location.state?.video || null;
-    const [selectedVideo, setSelectedVideo] = useState(initialVideo)
-    
+    const [selectedVideo, setSelectedVideo] = useState(initialVideo);
+    const { username } = useParams;
     useEffect(() => {   
         const fetchVideos = async () => {
             try {
@@ -50,11 +53,67 @@ function YouTubePage({ searchTerm, onSearch }) {
     };
 
     useEffect(() => {
+        console.log('comments are trying to call')
+        const fetchComments = async () => {
+            if (selectedVideo) {
+            try {
+            const response = await axios.get(`http://127.0.0.1:8000/api/comments/${videoId}/`, 
+            {
+                headers: {
+                    Authorization: "Bearer" + token,
+                },
+            }
+        );
+            setComments(response.data);
+            } catch (error) {
+                console.log(error.message);
+            }
+            }
+        };
+        
+
+        fetchComments();
+    }, [selectedVideo, videoId, username]);
+        console.log("This is the way we fetch comments",selectedVideo, videoId, username);
+
+    const onSubmit = async event => {
+        event.preventDefault();
+        console.log("user:", user);
+        console.log("video:", selectedVideo);
+        if (!isLoggedIn) {
+            alert("Please log in to post a comment.");
+            return;
+        }
+        
+        try{
+            await axios.post(`http://127.0.0.1:8000/api/comments/`, 
+                {   
+                    selectedVideo: selectedVideo,
+                    video_id: selectedVideo.videoId,
+                    user: user.id,
+                    username: user.username,
+                    text: newComment,
+                },
+                {
+                    headers: {
+                        Authorization: "Bearer" + token,
+                    },
+                }
+            );
+            setNewComment('');
+            // fetchComments();
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
+    useEffect(() => {
         setIsLoggedIn(!!user);
         console.log(selectedVideo);
     }, [user, selectedVideo]);
     
-    
+
+
     return (  
     <div className="container">
         <div className="search-bar">
@@ -67,19 +126,36 @@ function YouTubePage({ searchTerm, onSearch }) {
                 )}
         </div> 
         <div className="comments">
-            {selectedVideo.videoId > 0 && (
+        <div>
+            <form onSubmit={onSubmit}>
+                <input
+                    type="text"
+                    value={newComment}
+                    onChange={(event) => setNewComment(event.target.value)}
+                    placeholder="Add a comment.."
+                />
+                <button type="submit">Post</button>
+            </form>
+            <ul>
+                {comments.map((comment, index) => (
+                    <li key={index}>
+                        <strong>{user.username}:</strong>{comment.text}</li>
+                ))}
+            </ul>
+        </div>
+            {/* {selectedVideo > 0 && (
                 <Comments 
                 selectedVideo={selectedVideo}
                 isLoggedIn={isLoggedIn}
                 />
-            )}
+            )} */}
 
         </div>
         <div className="Related-Videos">
             {videos.length > 0 && (
                 <RelatedVideos 
                     video={selectedVideo}
-                    videos={videos.slice(0)}
+                    videos={videos.slice(1)}
                     onVideoSelect={onVideoSelect}
                     selectedVideo={selectedVideo}
                 /> 

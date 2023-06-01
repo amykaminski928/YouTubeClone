@@ -37,7 +37,7 @@ function SearchResultsPage({ searchTerm, onSearch }) {
 }, [searchTerm]);
 
 useEffect(() => {
-    console.log(videos);
+    console.log("fetchVideos", videos);
 }, [videos]);
     // const onFormSubmit = (searchResults) => {
     //     setVideos(searchResults);
@@ -56,7 +56,7 @@ useEffect(() => {
     const onVideoSelect = (video) => {
         setSelectedVideo(video)
         navigate(`/${video.id.videoId}/`, { state: { video } });
-        console.log('onVideoSelect in SearchResults called'); };
+        console.log('onVideoSelect in SearchResults called', selectedVideo); };
     
     useEffect(() => {
         console.log('selected video: ', selectedVideo);

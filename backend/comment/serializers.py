@@ -12,4 +12,4 @@ class CommentSummarySerializer(serializers.ModelSerializer):
 
     class Meta: 
         model= Comment
-        fields = ['username', 'text']
+        fields = ['username', 'text', 'video_id']
