@@ -9,7 +9,7 @@ li {
 }
 
 .navBar {
-  background: steelblue;
+  background: #2a9d8f;
   box-shadow: 4px 2px 5px gray;
   color: white;
   margin-bottom: 2rem;
@@ -17,9 +17,9 @@ li {
 }
 
 .navBar button {
-  background: transparent;
+  background: #e9c46a;
   border: 2px solid white;
-  color: white;
+  color: #264653;
   padding: 0.4rem 0.5rem;
 }
 
